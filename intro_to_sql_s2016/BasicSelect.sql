@@ -7,115 +7,123 @@
   IDs, names, and GPAs of students with GPA > 3.6
 **************************************************************/
 
-select sID, sName, GPA
-from Student
-where GPA > 3.6;
+SELECT sID, sName, GPA
+FROM Student
+WHERE GPA > 3.6;
 
 /*** Same query without GPA ***/
 
-select sID, sName
-from Student
-where GPA > 3.6;
+SELECT sID, sName
+FROM Student
+WHERE GPA > 3.6;
 
 /**************************************************************
   Student names and majors for which they've applied
 **************************************************************/
 
-select sName, major
-from Student, Apply
-where Student.sID = Apply.sID;
+SELECT sName, major
+FROM Student, Application
+WHERE Student.sID = Application.sID;
 
-/*** Same query with Distinct, note difference from algebra ***/
+/*** Same query with distinct ***/
 
-select distinct sName, major
-from Student, Apply
-where Student.sID = Apply.sID;
+SELECT DISTINCT sName, major
+FROM Student, Application
+WHERE Student.sID = Application.sID;
 
 /**************************************************************
-  Names and GPAs of students with sizeHS < 1000 applying to
+  Names AND GPAs of students with sizeHS < 1000 Applicationing to
   CS at Stanford, and the application decision
 **************************************************************/
 
-select sname, GPA, decision
-from Student, Apply
-where Student.sID = Apply.sID
-  and sizeHS < 1000 and major = 'CS' and cname = 'Stanford';
+SELECT sName, GPA, decision
+FROM Student, Application
+WHERE Student.sID = Application.sID
+  AND sizeHS < 1000
+  AND major = 'CS'
+  AND cname = 'Stanford';
 
 /**************************************************************
   All large campuses with CS applicants
 **************************************************************/
 
-select cName
-from College, Apply
-where College.cName = Apply.cName
-  and enrollment > 20000 and major = 'CS';
+SELECT cName
+FROM College, Application
+WHERE College.cName = Application.cName
+  AND enrollment > 20000
+  AND major = 'CS';
 
 /*** Fix error ***/
 
-select College.cName
-from College, Apply
-where College.cName = Apply.cName
-  and enrollment > 20000 and major = 'CS';
+SELECT College.cName
+FROM College, Application
+WHERE College.cName = Application.cName
+  AND enrollment > 20000
+  AND major = 'CS';
 
-/*** Add Distinct ***/
+/*** Add distinct ***/
 
-select distinct College.cName
-from College, Apply
-where College.cName = Apply.cName
-  and enrollment > 20000 and major = 'CS';
+SELECT DISTINCT College.cName
+FROM College, Application
+WHERE College.cName = Application.cName
+  AND enrollment > 20000
+  AND major = 'CS';
 
 /**************************************************************
   Application information
 **************************************************************/
 
-select Student.sID, sName, GPA, Apply.cName, enrollment
-from Student, College, Apply
-where Apply.sID = Student.sID and Apply.cName = College.cName;
+SELECT Student.sID, sName, GPA, Application.cName, enrollment
+FROM Student, College, Application
+WHERE Application.sID = Student.sID
+  AND Application.cName = College.cName;
 
 /*** Sort by decreasing GPA ***/
 
-select Student.sID, sName, GPA, Apply.cName, enrollment
-from Student, College, Apply
-where Apply.sID = Student.sID and Apply.cName = College.cName
-order by GPA desc;
+SELECT Student.sID, sName, GPA, Application.cName, enrollment
+FROM Student, College, Application
+WHERE Application.sID = Student.sID
+  AND Application.cName = College.cName
+ORDER BY GPA DESC;
 
 /*** Then by increasing enrollment ***/
 
-select Student.sID, sName, GPA, Apply.cName, enrollment
-from Student, College, Apply
-where Apply.sID = Student.sID and Apply.cName = College.cName
-order by GPA desc, enrollment;
+SELECT Student.sID, sName, GPA, Application.cName, enrollment
+FROM Student, College, Application
+WHERE Application.sID = Student.sID
+  AND Application.cName = College.cName
+ORDER BY GPA DESC, enrollment;
 
 /**************************************************************
   Applicants to bio majors
 **************************************************************/
 
-select sID, major
-from Apply
-where major like '%bio%';
+SELECT sID, major
+FROM Application
+WHERE major LIKE '%bio%';
 
-/*** Same query with Select * ***/
+/*** Same query with SELECT * ***/
 
-select *
-from Apply
-where major like '%bio%';
+SELECT *
+FROM Application
+WHERE major LIKE '%bio%';
 
 /**************************************************************
-  Select * cross-product
+  SELECT * cross-product
 **************************************************************/
 
-select *
-from Student, College;
+SELECT *
+FROM Student, College;
 
 /**************************************************************
   Add scaled GPA based on sizeHS
-  Also note missing Where clause
+  Also note missing WHERE clause
 **************************************************************/
 
-select sID, sName, GPA, sizeHS, GPA*(sizeHS/1000.0)
-from Student;
+SELECT sID, sName, GPA, sizeHS, GPA*(sizeHS/1000.0)
+FROM Student;
 
 /*** Rename result attribute ***/
 
-select sID, sName, GPA, sizeHS, GPA*(sizeHS/1000.0) as scaledGPA
-from Student;
+SELECT sID, sName, GPA, sizeHS, GPA*(sizeHS/1000.0) AS scaledGPA
+FROM Student;
