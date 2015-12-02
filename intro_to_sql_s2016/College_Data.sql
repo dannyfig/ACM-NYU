@@ -1,13 +1,14 @@
-/*
+/**************************************************************
   Delete all values from Student, College, and Application
-*/
+  (again, just to be safe)
+**************************************************************/
 DELETE FROM Student;
 DELETE FROM College;
 DELETE FROM Application;
 
-/*
-  Insert a bunch of values into our data tables Student, College, Application
-*/
+/**************************************************************
+  Insert a bunch of values into our data tables: Student, College, Application
+**************************************************************/
 INSERT INTO Student VALUES (123, 'Amy', 3.9, 1000);
 INSERT INTO Student VALUES (234, 'Bob', 3.6, 1500);
 INSERT INTO Student VALUES (345, 'Craig', 3.5, 500);
