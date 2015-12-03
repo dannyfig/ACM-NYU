@@ -46,6 +46,7 @@ CREATE TABLE College (
 **************************************************************/
 CREATE TABLE Student (
   sID int NOT NULL UNIQUE,
+  # sID int PRIMARY KEY,
   sName text,
   GPA real,
   sizeHS int
@@ -65,6 +66,8 @@ CREATE TABLE Application (
   cName text,
   major text,
   decision text
+  # , FOREIGN KEY (sID) REFERENCES Student(sID)
+
 );
 
 /*
