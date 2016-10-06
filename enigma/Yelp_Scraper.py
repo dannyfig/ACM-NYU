@@ -39,6 +39,7 @@ def main():
     # Got an extra ampersand
     base_url = base_url[:-1]
 
+    # Milestone 1
     print(base_url)
 
     # Retrieve web page using requests
@@ -49,13 +50,27 @@ def main():
 
     returned_text = {}
 
+    # Chrome devtools
     i = 1
     for record in soup.find_all('li', 'regular-search-result'):
         returned_text[i] = record.text
         i += 1
 
     clean = {index: " ".join(result.split()) for index, result in returned_text.items()}
+
     pprint(clean)
+
+    # To get the next page?
+
+    # Chrome devtools
+    rel_next = soup.find_all('a', 'u-decoration-none next pagination-links_anchor', href=True)[0]['href']
+
+    # Aha! It just adds the start=n parameter. Sly!
+    base_url += "start=10"
+
+    # Rinse and repeat
+    request = requests.get(base_url)
+
 
 
 if __name__ == '__main__':
