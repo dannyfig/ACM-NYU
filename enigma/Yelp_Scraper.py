@@ -66,11 +66,12 @@ def main():
     rel_next = soup.find_all('a', 'u-decoration-none next pagination-links_anchor', href=True)[0]['href']
 
     # Aha! It just adds the start=n parameter. Sly!
-    base_url += "start=10"
+    base_url += "&start=10"
 
     # Rinse and repeat
     request = requests.get(base_url)
 
+    print(request.status_code)
 
 
 if __name__ == '__main__':
