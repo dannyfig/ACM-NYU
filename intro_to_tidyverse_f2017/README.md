@@ -4,13 +4,7 @@
 
 #### R
 
-If you have [brew](https://brew.sh/) or really any other package manager, this whole process is much tidier:
-
-```bash
-$ brew install r
-```
-
-Otherwise, you'll have to use the GUI at the [CRAN homepage](https://cran.rstudio.com/).
+Use the GUI installer at the [CRAN homepage](https://cran.rstudio.com/).
 
 #### RStudio
 
@@ -42,8 +36,8 @@ $ pwd | pbcopy
 	setwd('paste your clipboard')
 	```
 	
-3. Open up the file `tutorial.R` (with `File > Open File`) and let's get started!
+3. Open up the file `0-intro.R` (with `File > Open File`) and let's get started!
 
 ---
 
-Slide links: [kapow]()
+Slide links: [kapow](https://docs.google.com/presentation/d/1kQ4qI_V0T9WOEQ6bCDmXOCnNQzjCfhkM759KkerKEwc/edit?usp=sharing)
